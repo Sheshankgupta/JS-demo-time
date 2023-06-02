@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        @font-face {
+            font-family: time;
+            src: url(./DIGITALDREAM.ttf);
+        }
+
+        * {
+            font-family: time;
+        }
+    </style>
+</head>
+
+<body style="background-color: green; margin: 0;">
+    <div id="counter"
+        style="text-align: center; margin-block: 40vh; font-size: 40px; background-color: #363333; margin-inline: 0; padding-inline: 0; padding-block: 40px; color: green;">
+    </div>
+    <script>
+        var date = new Date();
+        h = date.getHours()
+        m = date.getMinutes()
+        s = date.getSeconds();
+        if (s < 10) {
+            s = "0" + s;
+        }
+        if (m < 10) {
+            m = "0" + m;
+        }
+        hours = h % 12;
+        if (Math.floor(h / 12) > 0) {
+            abbr = 'PM';
+        } else {
+            abbr = 'AM';
+        }
+        document.getElementById("counter").innerHTML = ('0' + hours).slice(-2) + ":" + ('0' + m).slice(-2) + ":" + ('0' + s).slice(-2) + "&ensp;" + abbr;
+        window.setInterval(function () {
+            s = eval(s + Number('1'));
+            a = h / 12;
+            // console.log();
+            if (Math.floor(a) > 0) {
+                abbr = 'PM';
+            } else {
+                abbr = 'AM';
+            }
+            hours = h % 12;
+            document.getElementById("counter").innerHTML = ('0' + hours).slice(-2) + ":" + ('0' + m).slice(-2) + ":" + ('0' + s).slice(-2) + "&ensp;" + abbr;
+            if (s == 59) {
+                s = 0;
+                m = eval(m + Number('1'));
+            }
+            if (m == 59) {
+                m = 0;
+                h = eval(h + Number('1'));
+            }
+        }, 1000)
+    </script>
+</body>
+
+</html>
